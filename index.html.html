@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Arya 💘</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #ff6a88, #ff99ac);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: url('https://cur.cursors-4u.net/others/oth-1/oth34.cur'), auto;
+  }
+
+  .container {
+    text-align: center;
+    color: white;
+    z-index: 5;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+  }
+
+  .buttons {
+    position: relative;
+    height: 250px;
+    margin-top: 40px;
+  }
+
+  button {
+    padding: 14px 36px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  #yes {
+    background: #2ecc71;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  #no {
+    background: #e74c3c;
+    color: white;
+    position: absolute;
+    left: 220px;
+    top: 20px;
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -30px;
+    font-size: 24px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(-120vh) rotate(360deg); }
+  }
+
+  .taunt {
+    position: fixed;
+    top: 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    animation: fadeOut 2s forwards;
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Arya (aka BooBoo)… 💖</h1>
+  <p>Will you be my Valentine? 😌</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">Yes 💘</button>
+    <button id="no">No 💔</button>
+  </div>
+</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e9b9f3a62.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const noBtn = document.getElementById("no");
+  let scale = 1;
+
+  const taunts = [
+    "Nice try BooBoo 😏",
+    "The audacity 💀",
+    "No is not an option 😌",
+    "Cursor detected. Chaos activated.",
+    "Arya… we talked about this 👀",
+    "That button is decorative."
+  ];
+
+  noBtn.addEventListener("mouseenter", () => {
+    scale -= 0.08;
+    if (scale < 0.35) scale = 0.35;
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.style.transform = `scale(${scale}) rotate(${Math.random()*40 - 20}deg)`;
+
+    showTaunt();
+  });
+
+  function showTaunt() {
+    const t = document.createElement("div");
+    t.className = "taunt";
+    t.innerText = taunts[Math.floor(Math.random() * taunts.length)];
+    t.style.left = Math.random() * 60 + 20 + "%";
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+  }
+
+  function yesClicked() {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        background: radial-gradient(circle, #ff758c, #ff7eb3);
+        color:white;
+        font-family:'Segoe UI', sans-serif;
+        text-align:center;">
+        
+        <h1 style="font-size:3.5rem;">SHE SAID YES 😭💖</h1>
+        <h2>Arya, my BooBoo 🌹</h2>
+        <p style="max-width:650px;font-size:1.3rem;">
+          You are my calm, my chaos, and my favorite person to annoy forever.
+          Thank you for choosing me—today and always.
+        </p>
+        <p style="margin-top:30px;font-size:1.6rem;">Happy Valentine’s Day 💌</p>
+      </div>
+    `;
+  }
+
+  // Heart storm
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = Math.random() > 0.5 ? "💖" : "💘";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 250);
+</script>
+
+</body>
+</html>
